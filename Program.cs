@@ -17,11 +17,13 @@ namespace DP.net
             else
             {
                 System.Console.WriteLine("Singleton not work");
+                System.Console.WriteLine(" not work");
+
             }
             s2.DoWork();
 
             #endregion
-        
+
 
         }
     }
