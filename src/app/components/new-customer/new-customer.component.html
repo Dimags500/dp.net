@@ -1,0 +1,163 @@
+<app-page-header [title]="headerTitle" [headerIcon]="headerIcon" [headerDescription]="headerDescription">
+</app-page-header>
+
+<div class="row">
+  <div class="col-12">
+
+    <!-- <form #customerForm="ngForm" novalidate="novalidate" autocomplete="off" (ngSubmit)="onSubmit(customerForm.form)">
+
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="firstName"><span class="text-danger">*</span>First Name</label>
+          <input class="form-control" [ngClass]="{
+              'is-invalid': firstNameField.errors && firstNameField.dirty
+            }" required minlength="2" name="firstName" id="firstName" #firstNameField="ngModel" [(ngModel)]="firstName"
+            type="text">
+          <div [hidden]="!firstNameField.errors?.required" class="invalid-feedback">First Name is required</div>
+          <div [hidden]="!firstNameField.errors?.minlength" class="invalid-feedback">First Name is minlength</div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="lastName"><span class="text-danger">*</span>Last Name</label>
+
+          <input class="form-control" [ngClass]="{
+              'is-invalid': lastNameField.errors && lastNameField.dirty
+            }" required minlength="2" name="lastName" id="lastName" #lastNameField="ngModel" [(ngModel)]="lastName"
+            type="text">
+          <div [hidden]="!lastNameField.errors?.required" class="invalid-feedback">Last Name is required</div>
+          <div [hidden]="!lastNameField.errors?.minlength" class="invalid-feedback">Last Name is minlength</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="email"><span class="text-danger">*</span>Email</label>
+          <input class="form-control" [ngClass]="{
+              'is-invalid': emailCustomer.errors && emailCustomer.dirty
+            }" required email name="email" id="email" #emailCustomer="ngModel" [(ngModel)]="email" type="email">
+          <div [hidden]="!emailCustomer.errors?.required" class="invalid-feedback">email is required</div>
+          <div [hidden]="!emailCustomer.errors?.email" class="invalid-feedback">email is not email</div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="phone"><span class="text-danger">*</span>Phone</label>
+          <input class="form-control" [ngClass]="{
+              'is-invalid': phoneCustomer.errors && phoneCustomer.dirty
+            }" required name="phone" pattern="^0[2-9]\d{7,8}$" id="phone" #phoneCustomer="ngModel" [(ngModel)]="phone"
+            type="tel">
+          <div [hidden]="!phoneCustomer.errors?.required" class="invalid-feedback">phone is required</div>
+          <div [hidden]="!phoneCustomer.errors?.pattern" class="invalid-feedback">phone is not phone</div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 mb-3"><label for="customerAddress">Address</label>
+          <input id="customerAddress" name="address" type="text" #af="ngModel" [(ngModel)]="address"
+            class="form-control">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 mb-3">
+          <label for="customerNotes">Notes</label>
+          <textarea id="customerNotes" cols="30" rows="10" name="notes" type="text" #af="ngModel" [(ngModel)]="notes"
+            class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="fixed-bottom bg-light p-3 text-center">
+        <a href="" routerLink=".." class="btn btn-secondery">Cancel</a>
+        <input [disabled]="customerForm.invalid" class="btn btn-primary ml-3" name="submit" type="submit" value="Save">
+      </div>
+
+    </form> -->
+
+    <form [formGroup]="formGroup" (ngSubmit)="ngSubmit()">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="firstName"><span class="text-danger">*</span>First Name</label>
+          <input formControlName="firstName" class="form-control" [ngClass]="{
+              'is-invalid': formGroup.get('firstName')?.errors && formGroup.get('firstName')?.dirty
+            }" required minlength="2" name="firstName" id="firstName" type="text">
+          <div [hidden]="!formGroup.get('firstName')?.errors?.required" class="invalid-feedback">First Name is required
+          </div>
+          <div [hidden]="!formGroup.get('firstName')?.errors?.minlength" class="invalid-feedback">First Name is
+            minlength
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="lastName"><span class="text-danger">*</span>Last Name</label>
+
+          <input formControlName="lastName" class="form-control" [ngClass]="{
+              'is-invalid': formGroup.get('lastName')?.errors && formGroup.get('lastName')?.dirty
+            }" id="lastName" type="text">
+          <div [hidden]="!formGroup.get('lastName')?.errors?.required" class="invalid-feedback">Last Name is required
+          </div>
+          <div [hidden]="!formGroup.get('lastName')?.errors?.minlength" class="invalid-feedback">Last Name is minlength
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="email"><span class="text-danger">*</span>Email</label>
+          <input formControlName="email" class="form-control" [ngClass]="{
+              'is-invalid': formGroup.get('email')?.errors && formGroup.get('email')?.dirty
+            }" required email name="email" id="email" type="email">
+          <div [hidden]="!formGroup.get('email')?.errors?.required" class="invalid-feedback">email is required</div>
+          <div [hidden]="!formGroup.get('email')?.errors?.email" class="invalid-feedback">email is not email</div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="phone"><span class="text-danger">*</span>Phone</label>
+          <input formControlName="phone" class="form-control" [ngClass]="{
+              'is-invalid': formGroup.get('phone')?.errors && formGroup.get('phone')?.dirty
+            }" id="phone" type="tel">
+          <div [hidden]="!formGroup.get('phone')?.errors?.required" class="invalid-feedback">phone is required</div>
+          <div [hidden]="!formGroup.get('phone')?.errors?.pattern" class="invalid-feedback">phone is not phone</div>
+        </div>
+
+      </div>
+      <button type="button" (click)="addHobbie()" class="btn"><i class="fa fa-plus"></i></button>
+
+      <div formArrayName="hobbies">
+
+        <div class="row" formGroupName='{{i}}' *ngFor="let item of hobbiesArr; let i=index">
+          <div class="col-md-4 mb-3">
+            <label for="name"><span class="text-danger">*</span>Name</label>
+            <input formControlName="name" class="form-control" id="name" type="text">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="hoursPerWeek"><span class="text-danger">*</span>Hours/week</label>
+            <input formControlName="hoursPerWeek" class="form-control" id="hoursPerWeek" type="number">
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="description"><span class="text-danger">*</span>description</label>
+            <input formControlName="description" class="form-control" id="description" type="text">
+          </div>
+          <div class="col-md-1 mb-3">
+            <button (click)="deleteHobbie(i)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 mb-3"><label for="customerAddress">Address</label>
+          <input formControlName="address" id="customerAddress" name="address" type="text" class="form-control">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 mb-3">
+          <label for="customerNotes">Notes</label>
+          <textarea formControlName="notes" id="customerNotes" cols="30" rows="10" name="notes" type="text"
+            class="form-control"></textarea>
+        </div>
+      </div>
+
+      <div class="fixed-bottom bg-light p-3 text-center">
+        <a href="" routerLink=".." class="btn btn-secondery">Cancel</a>
+        <a class="btn btn-info" (click)="onClear()">Clear</a>
+        <input [disabled]="formGroup.invalid" class="btn btn-primary ml-3" name="submit" type="submit" value="Save">
+      </div>
+    </form>
+
+  </div>
+</div>

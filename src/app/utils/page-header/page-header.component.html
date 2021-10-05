@@ -1,0 +1,20 @@
+<div class="row mt-5">
+  <div class="col-12">
+    <div class="jumbotron pt-3 pb-3">
+      <h3>
+        <ng-container *ngIf="headerIcon; then ifTemplate; else elseTemplate"></ng-container>
+
+        <ng-template #ifTemplate>
+          <i [ngClass]="headerIcon"></i>
+        </ng-template>
+
+        <ng-template #elseTemplate>
+          <i class="fas fa-exclamation-circle"></i>
+        </ng-template>
+
+        {{headerTitle}}
+      </h3>
+      <p class="lead">{{headerDescription}}</p>
+    </div>
+  </div>
+</div>
